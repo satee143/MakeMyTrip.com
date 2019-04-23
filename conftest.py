@@ -23,9 +23,11 @@ def Browser_setup(request):
 
     elif browser.lower() == 'ie':
         driver = webdriver.Ie(IEDriverManager().install())
+        
 
     elif browser.lower() == 'edge':
-        driver = webdriver.Edge(EdgeDriverManager().install())
+        driver=webdriver.Edge(EdgeDriverManager().install())
+        
 
     request.cls.driver = driver
     driver.set_page_load_timeout(20)
