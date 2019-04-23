@@ -28,6 +28,7 @@ def Browser_setup(request):
         driver = webdriver.Edge(EdgeDriverManager().install())
 
     request.cls.driver = driver
+    driver.set_page_load_timeout(20)
     driver.maximize_window()
     driver.implicitly_wait(15)
     driver.get(util.URL)
