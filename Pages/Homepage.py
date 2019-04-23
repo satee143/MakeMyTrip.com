@@ -75,7 +75,7 @@ class Homepage():
     def Select_Departure_Flight(self):
         self.driver.find_element_by_xpath(self.OneStop_radio_button_xpath).click()
         action=ActionChains(self.driver)
-        element1=self.driver.find_element_by_xpath(self.From_Link_xpath))
+        element1=self.driver.find_element_by_xpath(self.From_Link_xpath)
         self.driver.execute_script("arguments[0].click();",element1)
         value=self.driver.find_element_by_xpath(self.From_Link_xpath).text
         #print(value)
