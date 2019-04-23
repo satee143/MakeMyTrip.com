@@ -109,8 +109,9 @@ class Homepage():
         total_price1 = int(total_price[2:].replace(',', ''))
         #print(total)
         #print(total_price)
-        assert total_price1 == total
         print('The Selected UPWARD Flight RETURN Flight Total  FARE :',total,'Displayed Total FARE at bottom is :',total_price1)
+        time.sleep(10)
+        assert total_price1 == total
         print('The Sum of UP FARE AND RETURN FARE ARE EQUAL TO THE LISTED OUT TOTAL FARE')
 
 

@@ -2,6 +2,8 @@ from selenium import webdriver
 import time
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.microsoft import IEDriverManager
+from webdriver_manager.microsoft import EdgeDriverManager
 import pytest
 from Utils import util
 import unittest
@@ -18,6 +20,12 @@ def Browser_setup(request):
 
     elif browser.lower() == 'firefox':
         driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+
+    elif browser.lower() == 'ie':
+        driver = webdriver.Firefox(executable_path=IEDriverManager().install())
+
+    elif browser.lower() == 'edge':
+        driver = webdriver.Firefox(executable_path=EdgeDriverManager().install())
 
     request.cls.driver = driver
     driver.maximize_window()
