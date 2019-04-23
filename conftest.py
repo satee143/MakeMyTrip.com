@@ -21,14 +21,14 @@ def Browser_setup(request):
 
     request.cls.driver = driver
     driver.maximize_window()
-    driver.implicitly_wait(30)
+    driver.implicitly_wait(15)
     driver.get(util.URL)
 
 
 
     yield
-    #driver.close()
-    #driver.quit()
+    driver.close()
+    driver.quit()
 
 
 
