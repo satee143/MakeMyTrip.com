@@ -25,7 +25,7 @@ def Browser_setup(request):
         driver = webdriver.Firefox(executable_path=IEDriverManager().install())
 
     elif browser.lower() == 'edge':
-        driver = webdriver.Firefox(executable_path=EdgeDriverManager().install())
+        driver = webdriver.Firefox(EdgeDriverManager().install())
 
     request.cls.driver = driver
     driver.maximize_window()
