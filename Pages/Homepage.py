@@ -1,5 +1,6 @@
 from Utils import util
 import time
+import allure
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
@@ -82,10 +83,15 @@ class Homepage():
         #print(self.value1)
         listoutprice=self.driver.find_element_by_xpath(self.ListedOutDeparturePrice_link_xpath).text
         #print(listoutprice)
-        assert value == listoutprice
-        print('The Selected Flight UPWARD FARE :',value,'Displayed FARE for UPWARD at bottom is :',listoutprice)
-        print('PRICE ARE MATCHED UPWARD DIRECTION')
-        print()
+        try:
+            assert value == listoutprice
+            print('The Selected Flight UPWARD FARE :',value,'Displayed FARE for UPWARD at bottom is :',listoutprice)
+            print('PRICE ARE MATCHED UPWARD DIRECTION')
+            print()
+        except:
+            print('Failed')
+            allure.attach(self.driver.get_screenshot_as_png(), name=util.now,
+                          attachment_type=allure.attachment_type.PNG)
 
 
     def Select_Return_Flight(self):
@@ -97,10 +103,17 @@ class Homepage():
         #print(self.value2)
         listoutprice2=self.driver.find_element_by_xpath(self.ListedOutReturnPrice_link_xpath).text
         #print(listoutprice2)
-        assert value==listoutprice2
-        print('The Selected Flight RETURN FARE :',self.value2,'Displayed FARE for RETURN at bottom is :',listoutprice2)
-        print('PRICE ARE MATCHED RETURN DIRECTION')
-        print()
+        try:
+
+            assert value==listoutprice2
+            print('The Selected Flight RETURN FARE :', self.value2, 'Displayed FARE for RETURN at bottom is :',
+                  listoutprice2)
+            print('PRICE ARE MATCHED RETURN DIRECTION')
+            print()
+        except:
+            allure.attach(self.driver.get_screenshot_as_png(),name=util.now,attachment_type=allure.attachment_type.PNG)
+            print('Assertion Fail ')
+
 
 
     def Caculate_and_Compare(self):
@@ -111,8 +124,14 @@ class Homepage():
         #print(total_price)
         print('The Selected UPWARD Flight RETURN Flight Total  FARE :',total,'Displayed Total FARE at bottom is :',total_price1)
         time.sleep(10)
-        assert total_price1 == total
-        print('The Sum of UP FARE AND RETURN FARE ARE EQUAL TO THE LISTED OUT TOTAL FARE')
+        try:
+
+            assert total_price1 == total
+            print('The Sum of UP FARE AND RETURN FARE ARE EQUAL TO THE LISTED OUT TOTAL FARE')
+        except:
+            print('Assertion Failed')
+            allure.attach(self.driver.get_screenshot_as_png(), name=util.now,
+                          attachment_type=allure.attachment_type.PNG)
 
 
 
