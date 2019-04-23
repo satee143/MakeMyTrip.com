@@ -30,9 +30,9 @@ def Browser_setup(request):
         
 
     request.cls.driver = driver
-    driver.set_page_load_timeout(20)
+    
     driver.maximize_window()
-    driver.implicitly_wait(15)
+    driver.implicitly_wait(150)
     driver.get(util.URL)
 
 
