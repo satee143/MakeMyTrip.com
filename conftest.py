@@ -22,10 +22,10 @@ def Browser_setup(request):
         driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
 
     elif browser.lower() == 'ie':
-        driver = webdriver.Firefox(executable_path=IEDriverManager().install())
+        driver = webdriver.Ie(IEDriverManager().install())
 
     elif browser.lower() == 'edge':
-        driver = webdriver.Firefox(EdgeDriverManager().install())
+        driver = webdriver.Edge(EdgeDriverManager().install())
 
     request.cls.driver = driver
     driver.maximize_window()
