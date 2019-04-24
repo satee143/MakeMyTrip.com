@@ -10,7 +10,7 @@ import unittest
 
 
 def pytest_addoption(parser):
-    parser.addoption('--browser', action='store', default='chrome')
+    parser.addoption('--browser' ,action='store', default='chrome')
 
 @pytest.fixture(scope='class')
 def Browser_setup(request):
@@ -30,13 +30,9 @@ def Browser_setup(request):
         
 
     request.cls.driver = driver
-    
     driver.maximize_window()
-    driver.implicitly_wait(150)
+    driver.implicitly_wait(15)
     driver.get(util.URL)
-
-
-
     yield
     driver.close()
     driver.quit()

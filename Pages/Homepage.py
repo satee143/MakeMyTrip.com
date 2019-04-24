@@ -3,8 +3,9 @@ import time
 import allure
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+import unittest
 
-class Homepage():
+class Homepage(unittest.TestCase):
 
     def __init__(self,driver):
         self.driver=driver
@@ -26,6 +27,7 @@ class Homepage():
         self.ListedOutDeparturePrice_link_xpath='//div[@class="splitVw-footer-left "]//p[@class="actual-price"]'
         self.ListedOutReturnPrice_link_xpath = '//div[@class="splitVw-footer-right "]//p[@class="actual-price"]'
         self.ListedOutTotalPrice_link_xpath = '//span[@class="splitVw-total-fare"]'
+        self.ListedOutDiscountPrice='//p[@class="disc-applied"]/span[2]'
 
 
     def Select_Flight(self):
@@ -74,7 +76,7 @@ class Homepage():
 
     def Select_Departure_Flight(self):
         self.driver.find_element_by_xpath(self.OneStop_radio_button_xpath).click()
-        action=ActionChains(self.driver)
+        time.sleep(6)
         element1=self.driver.find_element_by_xpath(self.From_Link_xpath)
         self.driver.execute_script("arguments[0].click();",element1)
         value=self.driver.find_element_by_xpath(self.From_Link_xpath).text
@@ -84,6 +86,7 @@ class Homepage():
         listoutprice=self.driver.find_element_by_xpath(self.ListedOutDeparturePrice_link_xpath).text
         #print(listoutprice)
         try:
+            self.assertEqual(value,listoutprice)
             assert value == listoutprice
             print('The Selected Flight UPWARD FARE :',value,'Displayed FARE for UPWARD at bottom is :',listoutprice)
             print('PRICE ARE MATCHED UPWARD DIRECTION')
@@ -117,13 +120,18 @@ class Homepage():
 
 
     def Caculate_and_Compare(self):
+        # discounts=self.driver.find_elements_by_xpath(self.ListedOutDiscountPrice)
+        # for discountx in discounts:
+        #     discount=int(discountx.text.replace('"',''))
+        #     print(discount)
         total=self.value1+self.value2
+        time.sleep(15)
         total_price=self.driver.find_element_by_xpath(self.ListedOutTotalPrice_link_xpath).text
         total_price1 = int(total_price[2:].replace(',', ''))
         #print(total)
         #print(total_price)
         print('The Selected UPWARD Flight RETURN Flight Total  FARE :',total,'Displayed Total FARE at bottom is :',total_price1)
-        time.sleep(10)
+
         try:
 
             assert total_price1 == total
