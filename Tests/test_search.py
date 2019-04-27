@@ -2,6 +2,7 @@ from Pages.Homepage import Homepage
 import pytest
 
 
+#@pytest.mark.dependency(depends=['a'])
 @pytest.mark.usefixtures('Browser_setup')
 class TestSEARCH():
     def test_flightsearch(self):

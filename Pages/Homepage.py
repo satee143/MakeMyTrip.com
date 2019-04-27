@@ -4,6 +4,9 @@ import allure
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 import unittest
+import pytest
+import pytest_dependency
+
 
 class Homepage(unittest.TestCase):
 

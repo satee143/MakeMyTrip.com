@@ -1,18 +1,19 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
 from webdriver_manager.chrome import ChromeDriverManager
+import pytest_dependency
 import pytest
 import unittest
+import time
 from webdriver_manager import utils
-
-class Test(unittest.TestCase):
-    def test_a(self):
-        self.assertNotEqual(5,5)
+from selenium.webdriver.common.by import By
 
 
-s=Test()
-s.test_a()
 
-# driver=webdriver.Chrome(ChromeDriverManager().install())
-# driver.get('https://admin:admin@the-internet.herokuapp.com/basic_auth')
-# print(driver.find_element_by_tag_name('p').text)
+driver=webdriver.Chrome(ChromeDriverManager().install())
+driver.get('https://www.cleartrip.com')
+driver.find_element(by=By.ID,value='FromTag').send_keys('bangalore')
+
+#//*[@id="fli_list_item0"]/div[1]/div/div/div/div[3]/p/span/span/text()
+#//div[contains(@class,'preferred')]//div[@class='price-group']//span[2]
+#//div[contains(@class,'preferred')]//div[contains(@class,'group')]//span[2]
